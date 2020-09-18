@@ -14,15 +14,15 @@
     max-width:100%;
     white-space:nowrap;
 }
-
-#layer-radio {
+/* 
+#school-layer-radio {
     position:relative;
     padding-bottom: 10px;
     display: table;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.8);
     width: auto;
-}
+} */
 
 body {
     margin: 0;
@@ -171,4 +171,73 @@ h4 {
     align-items: center;
     padding-top: 10px;
     z-index:-1;
+}
+.sidenav {
+    height: 100%;
+    width: 295px;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(17, 17, 17, 0.88);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav .closebtn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .sidenav label{
+    color:white;
+    font-family:Helvetica;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  #infoButton{
+    margin: 0;
+    position: absolute;
+    text-align:center;
+    top: 50%;
+    left:25px;
+    transform: translate(0, -50%);
+    border-radius: 50%;
+    border-width:0px;
+    background-color:rgba(218, 214, 214, 0.945);
+    visibility:hidden;
+  }
+  #description{
+    margin:10px;
+    margin-top:50px;
+    color:white !important;
+}
+#description *{
+    color:white !important;
+    text-align:center;
+    font-family:Helvetica;
+}
+#description p{
+    text-align:justify;
+    color:white !important;
 }

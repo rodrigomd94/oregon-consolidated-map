@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title>School districts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
@@ -27,7 +29,16 @@
         <table id="title-and-bar">
             <tr>
                 <td class="title-and-bar">
-                    <div class="map-overlay" id="map-title">
+                    <div class="map-overlay" id="school_officeholders_map-title">
+                        <h3>Oregon Officeholders By School District</h3>
+                    </div>
+                    <div class="map-overlay" id="school_voters_map-title" style='display:none;'>
+                        <h3>Oregon Voters By School District</h3>
+                    </div>
+                    <div class="map-overlay" id="county_officeholders_map-title" style='display:none;'>
+                        <h3>Oregon Officeholders By County</h3>
+                    </div>
+                    <div class="map-overlay" id="county_voters_map-title" style='display:none;'>
                         <h3>Oregon Voters By School District</h3>
                     </div>
                 </td>
@@ -35,99 +46,341 @@
                 <td class="title-and-bar">
                     <div id="geocoder" class="geocoder"></div>
                 </td>
-    
             </tr>
             </tr>
         </table>
     </div>
-    
+
+    <button id="infoButton" style="font-size:30px;cursor:pointer; z-index: 200" onclick="openNav()"><i
+            class="fa fa-info-circle"></i></button>
 
 
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <table>
 
-    <table id="overlay-table">
+            <tr>
+                <td style="padding-bottom:25px;">
+                    <label for="cars">Select boundaries</label>
 
+                    <select name="bound_select" id="bound_select">
+                        <option value="school_officeholders" selected>School board officeholders</option>
+                        <option value="school_voters">School board voters</option>
+                        <option value="county_officeholders">County district commissioners</option>
+                        <option value="county_voters">County district voters</option>
+                    </select>
+                </td>
+            </tr>
 
+            <tr>
+
+                <td id='school_voters_radio-container' style='display:none;'>
+                    <div id="school-layer-radio">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_voters_ages-filter" value="ages" />
+                            <label class="form-check-label tooltip" for="school_voters_ages-filter">Ages</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_voters_voters-filter" value="voters" />
+                            <label class="form-check-label tooltip" for="school_voters_voters-filter">Voters</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_voters_genders-filter" value="genders" />
+                            <label class="form-check-label tooltip" for="school_voters_gender-filter">
+                                Gender
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_voters_parties-filter" value="parties" />
+                            <label class="form-check-label tooltip" for="school_voters_parties-filter">
+                                Affiliation
+                            </label>
+                        </div>
+                    </div>
+                </td>
+
+                <td id='school_officeholders_radio-container'>
+                    <div id="school-layer-radio">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_officeholders_ages-filter" value="ages" checked />
+                            <label class="form-check-label tooltip" for="school_voters_ages-filter">Ages</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_officeholders_genders-filter" value="genders" />
+                            <label class="form-check-label tooltip" for="school_voters_gender-filter">
+                                Gender
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="school-filterradio"
+                                id="school_officeholders_parties-filter" value="parties" />
+                            <label class="form-check-label tooltip" for="school_voters_parties-filter">
+                                Affiliation
+                            </label>
+                        </div>
+                    </div>
+                </td>
+
+                <td id='county_voters_radio-container' style='display:none;'>
+                    <div id="county-layer-radio">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_voters_ages-filter" value="ages" />
+                            <label class="form-check-label tooltip" for="county_voters_ages-filter">Ages</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_voters_voters-filter" value="voters" />
+                            <label class="form-check-label tooltip" for="county_voters_voters-filter">Voters</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_voters_genders-filter" value="genders" />
+                            <label class="form-check-label tooltip" for="county_voters_genders-filter">
+                                Gender
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_voters_parties-filter" value="parties" />
+                            <label class="form-check-label tooltip" for="county_voters_parties-filter">
+                                Affiliation
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td id='county_officeholders_radio-container' style='display: none;'>
+                    <div id="county-layer-radio">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_officeholders_ages-filter" value="ages" />
+                            <label class="form-check-label tooltip" for="county_voters_ages-filter">Ages</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_officeholders_genders-filter" value="genders" />
+                            <label class="form-check-label tooltip" for="county_voters_gender-filter">
+                                Gender
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="county-filterradio"
+                                id="county_officeholders_parties-filter" value="parties" />
+                            <label class="form-check-label tooltip" for="county_voters_parties-filter">
+                                Affiliation
+                            </label>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+        <p id='description'>
+            This is a description of the map
+        </p>
+    </div>
+
+    <table style="position:absolute; right:40px; bottom:40px;">
         <tr>
-            <td>
-                <div class="map-overlay" id="layer-radio">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="filterradio" id="voters-filter" value="voters"
-                            checked />
-                        <label class="form-check-label tooltip" for="voters-filter">Voters</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="filterradio" id="ages-filter" value="ages"/>
-                        <label class="form-check-label tooltip" for="ages-filter">Ages</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="filterradio" id="gender-filter"
-                            value="genders" />
-                        <label class="form-check-label tooltip" for="gender-filter">
-                            Gender
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="filterradio" id="parties-filter"
-                            value="parties" />
-                        <label class="form-check-label tooltip" for="parties-filter">
-                            Affiliation
-                        </label>
-                    </div>
-                </div>
-            </td>
-
-
-        </tr>
-        <tr>
-            <td>
-                <div class='map-overlay legends' id='voters_legend'>
+            <td id="school_voters_legend" style="display:none;">
+                <div class='map-overlay legends' id='school_voters_voters_legend' style='display: none;'>
                     <h4>Total voters</h4>
                 </div>
-                <div class='map-overlay legends' id='ages_legend' style='display: none;'>
+                <div class='map-overlay legends' id='school_voters_ages_legend' style='display: none;'>
                     <h4>Ages</h4>
                 </div>
-                <div class='map-overlay legends' id='genders_legend' style='display: none;'>
+                <div class='map-overlay legends' id='school_voters_genders_legend' style='display: none;'>
                     <table>
                         <tr>
-                            <td id='female_legend' style="padding-right: 10px;">
+                            <td id='school_voters_female_legend' style="padding-right: 10px;">
                                 <h4>Female</h4>
                             </td>
-                            <td id='male_legend' style="padding-left: 10px;">
+                            <td id='school_voters_male_legend' style="padding-left: 10px;">
                                 <h4>Male</h4>
                             </td>
                         </tr>
                     </table>
 
                 </div>
-                <div class='map-overlay legends' id='parties_legend' style='display: none;'>
+                <div class='map-overlay legends' id='school_voters_parties_legend' style='display: none;'>
                     <table>
                         <tr>
-                            <td id='democrat_legend' style="padding-right: 10px;">
+                            <td id='school_voters_democrat_legend' style="padding-right: 10px;">
                                 <h4>Democrats</h4>
                             </td>
-                            </tr>
-                            <tr>
-                                <td id='republican_legend' style="padding-left: 10px;">
-                                    <h4>Republicans</h4>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id='nonaffiliated_legend' style="padding-left: 10px;">
-                                    <h4>Non-affiliated</h4>
-                                </td>
-                            </tr>
+                        </tr>
+                        <tr>
+                            <td id='school_voters_republican_legend' style="padding-left: 10px;">
+                                <h4>Republicans</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='school_voters_nonaffiliated_legend' style="padding-left: 10px;">
+                                <h4>Non-affiliated</h4>
                             </td>
                         </tr>
                     </table>
                 </div>
+            </td>
 
+            <td id="school_officeholders_legend">
+                <div class='map-overlay legends' id='school_officeholders_voters_legend' style='display: none;'>
+                    <h4>Total voters</h4>
+                </div>
+                <div class='map-overlay legends' id='school_officeholders_ages_legend'>
+                    <h4>Ages</h4>
+                </div>
+                <div class='map-overlay legends' id='school_officeholders_genders_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='school_officeholders_female_legend' style="padding-right: 10px;">
+                                <h4>Female</h4>
+                            </td>
+                            <td id='school_officeholders_male_legend' style="padding-left: 10px;">
+                                <h4>Male</h4>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class='map-overlay legends' id='school_officeholders_parties_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='school_officeholders_democrat_legend' style="padding-right: 10px;">
+                                <h4>Democrats</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='school_officeholders_republican_legend' style="padding-left: 10px;">
+                                <h4>Republicans</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='school_officeholders_nonaffiliated_legend' style="padding-left: 10px;">
+                                <h4>Non-affiliated</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='school_officeholders_nodominant_legend' style="padding-left: 10px;">
+                                <h4>No Dominant Party</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+            <td id="county_voters_legend" style='display: none;'>
+                <div class='map-overlay legends' id='county_voters_voters_legend' style='display: none;'>
+                    <h4>Total voters</h4>
+                </div>
+                <div class='map-overlay legends' id='county_voters_ages_legend'>
+                    <h4>Ages</h4>
+                </div>
+                <div class='map-overlay legends' id='county_voters_genders_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='county_voters_female_legend' style="padding-right: 10px;">
+                                <h4>Female</h4>
+                            </td>
+                            <td id='county_voters_male_legend' style="padding-left: 10px;">
+                                <h4>Male</h4>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class='map-overlay legends' id='county_voters_parties_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='county_voters_democrat_legend' style="padding-right: 10px;">
+                                <h4>Democrats</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='county_voters_republican_legend' style="padding-left: 10px;">
+                                <h4>Republicans</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='county_voters_nonaffiliated_legend' style="padding-left: 10px;">
+                                <h4>Non-affiliated</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+            <td id="county_officeholders_legend"  style='display: none;'>
+                <div class='map-overlay legends' id='county_officeholders_voters_legend' style='display: none;'>
+                    <h4>Total voters</h4>
+                </div>
+                <div class='map-overlay legends' id='county_officeholders_ages_legend' style='display: none;'>
+                    <h4>Ages</h4>
+                </div>
+                <div class='map-overlay legends' id='county_officeholders_genders_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='county_officeholders_female_legend' style="padding-right: 10px;">
+                                <h4>Female</h4>
+                            </td>
+                            <td id='county_officeholders_male_legend' style="padding-left: 10px;">
+                                <h4>Male</h4>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class='map-overlay legends' id='county_officeholders_parties_legend' style='display: none;'>
+                    <table>
+                        <tr>
+                            <td id='county_officeholders_democrat_legend' style="padding-right: 10px;">
+                                <h4>Democrats</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='county_officeholders_republican_legend' style="padding-left: 10px;">
+                                <h4>Republicans</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='county_officeholders_nonaffiliated_legend' style="padding-left: 10px;">
+                                <h4>Non-affiliated</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id='county_officeholders_nodominant_legend' style="padding-left: 10px;">
+                                <h4>No Dominant Party</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </td>
         </tr>
     </table>
 
 
+
     <script src="districts_final.geojson"></script>
-    <script src="script.js">
+    <script src="s_officeholders.geojson"></script>
+    <script src="county_voters.geojson"></script>
+    <script src="county_officeholders.geojson"></script>
+
+    <script src="./scripts/school_voters.js"></script>
+    <script src="./scripts/school_officeholders.js"></script>
+    <script src="./scripts/county_voters.js"></script>
+    <script src="./scripts/county_officeholders.js"></script>
+    <script src="./scripts/script.js">
+
     </script>
 </body>
 
