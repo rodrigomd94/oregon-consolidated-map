@@ -27,7 +27,7 @@ boundaryOption.addEventListener('change', function (e) {
     document.getElementById(prefix + "ages_legend").setAttribute("style", "display:;");
     document.getElementById(prefix + "map-title").setAttribute("style", "display:;");
     document.getElementById(prefix + "description").setAttribute("style", "display:;");
-
+    
     previous_bound = prefix;
 })
 
@@ -110,7 +110,10 @@ map.on("load", function () {
     createSchoolOfficeholders();
     createCountyOfficeholders()
     createCountyVoters()
+    createDAOfficeholders()
+   
 });
+
 
 
 function addGeocoder() {

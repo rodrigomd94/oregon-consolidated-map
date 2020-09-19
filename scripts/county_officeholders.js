@@ -31,13 +31,12 @@ function createCountyOfficeholders() {
             "fill-color": {
                 property: "avg_age",
                 stops: [
-                    [35, "#ffffcc"],
-                    [40, "#c7e9b4"],
-                    [45, "#7fcdbb"],
-                    [50, "#41b6c4"],
-                    [55, "#1d91c0"],
-                    [65, "#225ea8"],
-                    [75, "#0c2c84"],
+                    [48, "#ffffcc"],
+                    [50, "#c7e9b4"],
+                    [55, "#7fcdbb"],
+                    [60, "#41b6c4"],
+                    [65, "#2c7fb8"],
+                    [71, "#253494"],
                 ]
             },
             "fill-opacity": 0.8,
@@ -82,7 +81,7 @@ function createCountyOfficeholders() {
                           <dt>No. of male members</dt><dd>${e.features[0].properties.males}</dd>
                           <dt>No. of female members</dt><dd>${e.features[0].properties.females}</dd>
                           <p class=${clicked_id}></p>
-                          <dt>county Board Members</dt><dd>${e.features[0].properties.officeholders}</dd>
+                          <dt>County commissioners</dt><dd>${e.features[0].properties.officeholders}</dd>
                           </dl>`
             )
             .addTo(map);
@@ -150,8 +149,9 @@ function createCountyOfficeholders() {
 
     /*------------------------------------------------------------------ 
 ---------------------------------ages legend ------------------*/
-    var intervals_age = ['35-39', '40-44', '45-49', '50-54', '55-69', '70-75'];           //Defining the Age groups for the legend
-    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];  //Defining the corresponding colors for each group
+
+    var intervals_age = ['45-49', '50-54', '55-69','60-65', '70-75'];           //Defining the Age groups for the legend
+    var colors_age = ['#ffffcc', '#c7e9b4', '#7fcdbb', '#41b6c4', '#2c7fb8', '#253494'];  //Defining the corresponding colors for each group
     for (i = 0; i < intervals_age.length; i++) {
         var interval = intervals_age[i];                                                 //Store each interval
         var color = colors_age[i];                                                       //Store the color

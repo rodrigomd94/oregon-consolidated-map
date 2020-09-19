@@ -41,6 +41,9 @@
                     <div class="map-overlay" id="county_voters_map-title" style='display:none;'>
                         <h3>Oregon Voters By School District</h3>
                     </div>
+                    <div class="map-overlay" id="DA_officeholders_map-title" style='display:none;'>
+                        <h3>Oregon District Attorneys</h3>
+                    </div>
                 </td>
             <tr>
                 <td class="title-and-bar">
@@ -72,6 +75,7 @@
                         <option value="school_voters">School board voters</option>
                         <option value="county_officeholders">County commissioners</option>
                         <option value="county_voters">County commissioner voters</option>
+                        <option value="DA_officeholders">District Attorneys</option>
                     </select>
                 </td>
             </tr>
@@ -186,6 +190,30 @@
                         </div>
                     </div>
                 </td>
+                <td id='DA_officeholders_radio-container' style='display: none;'>
+                    <div id="DA-layer-radio">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="DA-filterradio"
+                                id="DA_officeholders_ages-filter" value="ages" />
+                            <label class="form-check-label tooltip" for="DA_officeholders_ages-filter">Ages</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="DA-filterradio"
+                                id="DA_officeholders_genders-filter" value="genders" />
+                            <label class="form-check-label tooltip" for="DA_officeholders_genders-filter">
+                                Gender
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="DA-filterradio"
+                                id="DA_officeholders_parties-filter" value="parties" />
+                            <label class="form-check-label tooltip" for="DA_officeholders_parties-filter">
+                                Affiliation
+                            </label>
+                        </div>
+                    </div>
+                </td>
 
             </tr>
         </table>
@@ -200,6 +228,9 @@
         </p>
         <p id='county_voters_description' class='description' style='display:none;'>
             This map shows the voter demographics (age, gender, political affiliation, number of voters) for the voters of Oregon's county commissions.
+        </p>
+        <p id='DA_officeholders_description' class='description' style='display:none;'>
+            This map shows the officeholders and their demographics (age, gender, political affiliation) for all of Oregon's district attorneys.
         </p>
     </div>
 
@@ -379,6 +410,23 @@
                 </div>
             </td>
         </tr>
+
+        <td id="DA_officeholders_legend"  style='display: none;'>
+            <div class='map-overlay legends' id='DA_officeholders_voters_legend' style='display: none;'>
+                <h4>Total voters</h4>
+            </div>
+            <div class='map-overlay legends' id='DA_officeholders_ages_legend' style='display: none;'>
+                <h4>Ages</h4>
+            </div>
+            <div class='map-overlay legends' id='DA_officeholders_genders_legend' style='display: none;'>
+                <h4>Gender</h4>
+
+            </div>
+            <div class='map-overlay legends' id='DA_officeholders_parties_legend' style='display: none;'>
+                <h4>Affiliation</h4>
+            </div>
+        </td>
+    </tr>
     </table>
 
 
@@ -387,11 +435,13 @@
     <script src="data/s_officeholders.geojson"></script>
     <script src="data/county_voters.geojson"></script>
     <script src="data/county_officeholders.geojson"></script>
+    <script src="data/DA_officeholders.geojson"></script>
 
     <script src="./scripts/school_voters.js"></script>
     <script src="./scripts/school_officeholders.js"></script>
     <script src="./scripts/county_voters.js"></script>
     <script src="./scripts/county_officeholders.js"></script>
+    <script src="./scripts/DA_officeholders.js"></script>
     <script src="./scripts/script.js">
 
     </script>
