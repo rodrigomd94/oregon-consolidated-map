@@ -139,21 +139,33 @@ h4 {
     font-size: 2vmin;
 
 }
+label{
+    font-size: 130%;
+}
 .form-check-label{
-    font-size: 2.1vmin;
-
+    font-size: 150%;
+}
+select{
+    font-size: 115%;
+    margin-top:8px;
+}
+option{
+    font-size: 115%;
 }
 
 .geocoder {
     width: 100%;
     width: 40vw;
     margin:0px;
+    text-align:center;
 }
 .mapboxgl-ctrl-geocoder {
     min-width: 100% !important;
     margin:0px;
 }
-
+.mapboxgl-ctrl-geocoder--input {
+    text-align: center;
+}
 #map-title{
     background: rgba(255, 255, 255, 0.924);
 
@@ -179,7 +191,8 @@ h4 {
     z-index: 3;
     top: 0;
     left: 0;
-    background-color: rgba(17, 17, 17, 0.88);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* background-color: rgba(17, 17, 17, 0.88); */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -207,7 +220,7 @@ h4 {
   }
 
   .sidenav label{
-    color:white;
+    color:black;
     font-family:Helvetica;
   }
   
@@ -227,17 +240,23 @@ h4 {
     background-color:rgba(218, 214, 214, 0.945);
     visibility:hidden;
   }
-  #description{
-    margin:10px;
+  .description{
+    margin:7px;
     margin-top:50px;
-    color:white !important;
+    padding:8px;
+    color:black !important;
+    font-size:150%;
+    text-align:justify;
+
 }
-#description *{
+.description *{
     color:white !important;
     text-align:center;
     font-family:Helvetica;
+
 }
-#description p{
+.description p{
     text-align:justify;
     color:white !important;
+
 }

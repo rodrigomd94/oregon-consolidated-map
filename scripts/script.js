@@ -18,6 +18,7 @@ boundaryOption.addEventListener('change', function (e) {
     document.getElementById(previous_bound + selected_value + "_legend").setAttribute("style", "display:none;");
     document.getElementById(previous_bound + "ages_legend").setAttribute("style", "display:none;");
     document.getElementById(previous_bound + "map-title").setAttribute("style", "display:none;");
+    document.getElementById(previous_bound + "description").setAttribute("style", "display:none;");
 
     document.getElementById(prefix + "ages" + '-filter').checked = 'checked';
     document.getElementById(prefix + 'radio-container').style.display = '';
@@ -25,6 +26,7 @@ boundaryOption.addEventListener('change', function (e) {
     document.getElementById(prefix + "legend").setAttribute("style", "display:;");
     document.getElementById(prefix + "ages_legend").setAttribute("style", "display:;");
     document.getElementById(prefix + "map-title").setAttribute("style", "display:;");
+    document.getElementById(prefix + "description").setAttribute("style", "display:;");
 
     previous_bound = prefix;
 })
@@ -95,7 +97,7 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     countries: 'us',
     flyto: false,
-    placeholder: 'Adress search...',
+    placeholder: 'Enter address here',
     bbox: [-124.9, 41.83, -116.0, 46.6],
     mapboxgl: mapboxgl
 });

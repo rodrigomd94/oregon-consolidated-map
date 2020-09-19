@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>School districts</title>
+    <title>Oregon Officeholders and Voters by District</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
@@ -57,11 +57,15 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <table>
+        <div id="company-logo" style='text-align:center;'>
+            <img src="./icon/terrapin.png"
+                    style="width:240px; margin-left:-6px;"/>
+        </div>
 
+        <table style='margin-left:5px;'>
             <tr>
-                <td style="padding-bottom:25px;">
-                    <label for="cars">Select boundaries</label>
+                <td style="padding-bottom:60px;">
+                    <label for="cars">Select District</label>
 
                     <select name="bound_select" id="bound_select">
                         <option value="school_officeholders" selected>School board officeholders</option>
@@ -185,12 +189,21 @@
 
             </tr>
         </table>
-        <p id='description'>
-            This is a description of the map
+        <p id='school_officeholders_description' class='description'>
+            This map shows the officeholders and their demographics (age, gender, political affiliation) for all of Oregon's public school districts.
+        </p>
+        <p id='school_voters_description' class='description' style='display:none;'>
+            This map shows the voter demographics (age, gender, political affiliation, number of voters) for the voters of Oregon's public school boards.
+        </p>
+        <p id='county_officeholders_description' class='description' style='display:none;'>
+            This map shows the officeholders and their demographics (age, gender, political affiliation) for all of Oregon's county commissions.
+        </p>
+        <p id='county_voters_description' class='description' style='display:none;'>
+            This map shows the voter demographics (age, gender, political affiliation, number of voters) for the voters of Oregon's county commissions.
         </p>
     </div>
 
-    <table style="position:absolute; right:40px; bottom:40px;">
+    <table style="position:absolute; right:3vw; top:60px;">
         <tr>
             <td id="school_voters_legend" style="display:none;">
                 <div class='map-overlay legends' id='school_voters_voters_legend' style='display: none;'>
