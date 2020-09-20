@@ -79,8 +79,8 @@ for (element of radioOption) {
 mapboxgl.accessToken =
     "pk.eyJ1IjoiamltY3VwcCIsImEiOiJjazVsZnRjdjYwb21iM25vMWd3a3VxNTcwIn0.GgP8sFpvsmSe7fGppUOcTQ";
 var bounds = [
-    [-124.9, 41.83],
-    [-116.0, 46.6]
+    [-126, 41.83],
+    [-116.8, 46.6]
 ];
 var map = new mapboxgl.Map({
     container: "map",
@@ -97,7 +97,7 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     countries: 'us',
     flyto: false,
-    placeholder: 'Enter address here',
+    placeholder: 'Click on the map or enter address here',
     bbox: [-124.9, 41.83, -116.0, 46.6],
     mapboxgl: mapboxgl
 });

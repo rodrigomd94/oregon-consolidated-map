@@ -37,7 +37,7 @@ function createSchoolOfficeholders() {
                     [50, "#41b6c4"],
                     [55, "#1d91c0"],
                     [65, "#225ea8"],
-                    [75, "#0c2c84"],
+                   // [75, "#0c2c84"],
                 ]
             },
             "fill-opacity": 0.8,
@@ -150,8 +150,15 @@ function createSchoolOfficeholders() {
 
     /*------------------------------------------------------------------ 
 ---------------------------------ages legend ------------------*/
+// [35, "#ffffcc"],
+// [40, "#c7e9b4"],
+// [45, "#7fcdbb"],
+// [50, "#41b6c4"],
+// [55, "#1d91c0"],
+// [65, "#225ea8"],
+// [75, "#0c2c84"],
     var intervals_age = ['35-39', '40-44', '45-49', '50-54', '55-69', '70-75'];           //Defining the Age groups for the legend
-    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];  //Defining the corresponding colors for each group
+    var colors_age = ['#ffffcc','#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8'];  //Defining the corresponding colors for each group
     for (i = 0; i < intervals_age.length; i++) {
         var interval = intervals_age[i];                                                 //Store each interval
         var color = colors_age[i];                                                       //Store the color

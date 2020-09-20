@@ -30,6 +30,7 @@ function createDAOfficeholders() {
         paint: {
             "fill-color": {
                 property: "avg_age",
+                default:'grey',
                 stops: [
                     [35, "#ffffcc"],
                     [40, "#c7e9b4"],
@@ -37,7 +38,8 @@ function createDAOfficeholders() {
                     [50, "#41b6c4"],
                     [55, "#1d91c0"],
                     [65, "#225ea8"],
-                ]
+                   
+                ],
             },
             "fill-opacity": 0.8,
             "fill-outline-color": "black"
@@ -77,7 +79,7 @@ function createDAOfficeholders() {
             .setHTML(
                 `<dl>
                            <h3>${e.features[0].properties.NAME}</h3>
-                          <p><dt>Average age</dt><dd>${Math.round(e.features[0].properties.avg_age)}</dd></p>
+                          <p><dt>Average age</dt><dd>${e.features[0].properties.avg_age}</dd></p>
                           <dt>No. of male members</dt><dd>${e.features[0].properties.males}</dd>
                           <dt>No. of female members</dt><dd>${e.features[0].properties.females}</dd>
                           <p class=${clicked_id}></p>
@@ -150,7 +152,7 @@ function createDAOfficeholders() {
     /*------------------------------------------------------------------ 
 ---------------------------------ages legend ------------------*/
     var intervals_age = ['29-39', '40-44', '45-49', '50-54', '55-69', 'Not specified'];           //Defining the Age groups for the legend
-    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', 'black'];  //Defining the corresponding colors for each group
+    var colors_age = ['#ffffcc', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', 'grey'];  //Defining the corresponding colors for each group
     for (i = 0; i < intervals_age.length; i++) {
         var interval = intervals_age[i];                                                 //Store each interval
         var color = colors_age[i];                                                       //Store the color
@@ -188,8 +190,8 @@ function createDAOfficeholders() {
     }
 
     //---------------- Party affiliations legend ---------------------//
-    var intervals_parties = ['Democrat', 'Republican', 'Nonaffiliated','Independent'];
-    var colors_parties = ['hsl(250,100%,50%)', 'hsl(360,100%,50%)','hsl(60,100%,50%)','black'];
+    var intervals_parties = ['Democrat', 'Republican', 'Nonaffiliated','Independent', 'Not Specified'];
+    var colors_parties = ['hsl(250,100%,50%)', 'hsl(360,100%,50%)','hsl(60,100%,50%)',"hsl(118, 43%, 81%)",'grey'];
     for (i = 0; i < intervals_parties.length; i++) {
         var interval = intervals_parties[i];
         var color = colors_parties[i];

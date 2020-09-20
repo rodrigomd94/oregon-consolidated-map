@@ -175,8 +175,9 @@ function createSchoolVoters() {
     }
 
     /*---------------------------------ages legend ------------------*/
-    var intervals_age = ['42-45', '46-49', '50-53', '54-57', '58-61', '62-66'];
-    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];
+
+    var intervals_age = ['46-49', '50-53', '54-57', '58-61', '62-66'];
+    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#225ea8', '#0c2c84'];
     for (i = 0; i < intervals_age.length; i++) {
         var interval = intervals_age[i];
         var color = colors_age[i];

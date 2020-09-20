@@ -26,7 +26,7 @@
 
 body {
     margin: 0;
-    padding-top: 0;
+    padding: 0;
     z-index: auto;
 }
 
@@ -163,9 +163,11 @@ option{
     min-width: 100% !important;
     margin:0px;
 }
+
 .mapboxgl-ctrl-geocoder--input {
     text-align: center;
 }
+
 #map-title{
     background: rgba(255, 255, 255, 0.924);
 
@@ -260,3 +262,19 @@ option{
     color:white !important;
 
 }
+/* 
+::-webkit-input-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+  }
+  ::-moz-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+  }
+  :-ms-input-placeholder {
+    color: peachpuff;
+    font-size: 13px;
+  } */
+  ::placeholder {
+    font-size: 18px;
+  }
