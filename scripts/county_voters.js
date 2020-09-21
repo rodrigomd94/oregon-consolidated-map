@@ -101,8 +101,7 @@ function createCountyVoters() {
                            <p><dt>No. of voters</dt><dd>${numberWithCommas(e.features[0].properties.voter_count)}</dd></p>
                           <dt>Average age</dt><dd>${parseInt(e.features[0].properties.avg_age)}</dd>
                           <p></p>
-                          <dt>District Attorney</dt><dd>${e.features[0].properties.attorney}</dd>
-                          <p></p>
+                         
                           <dt>% of male voters</dt><dd>${e.features[0].properties.male_prcnt.toFixed(2)}</dd>
                           <dt>% of female voters</dt><dd>${e.features[0].properties.fem_prcnt.toFixed(2)}</dd>
                           <p class=${clicked_id}></p>

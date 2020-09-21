@@ -79,7 +79,7 @@ function createDAOfficeholders() {
             .setHTML(
                 `<dl>
                            <h3>${e.features[0].properties.NAME}</h3>
-                          <p><dt>Average age</dt><dd>${e.features[0].properties.avg_age}</dd></p>
+                          <p><dt>District Attorney age</dt><dd>${e.features[0].properties.avg_age}</dd></p>
                           <dt>No. of male members</dt><dd>${e.features[0].properties.males}</dd>
                           <dt>No. of female members</dt><dd>${e.features[0].properties.females}</dd>
                           <p class=${clicked_id}></p>
