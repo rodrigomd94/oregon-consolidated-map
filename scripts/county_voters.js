@@ -1,8 +1,11 @@
 
 function createCountyVoters() {
     map.addSource("county_voters_voters", { type: "geojson", data: county_voters_districts });
+    map.addSource("county_labels", { type: "geojson", data: county_labels });
     //...................................................COUNTY LAYERS.........................................
     //.........................................................................................................
+
+
     map.addLayer({
         id: "county_voters_genders",
         type: "fill",
@@ -77,6 +80,23 @@ function createCountyVoters() {
     });
 
     //-----------------------------------------------
+        //---Labels--
+        map.addLayer({
+            id: "county_labels",
+            type: "symbol",
+            source: "county_labels",
+            layout: {
+                'text-field': ['get', 'NAME'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                'icon-image': ['concat', ['get', 'icon'], '-15']
+                }
+            
+        });
+    
+    
+        //-------
 
 
 
@@ -84,6 +104,7 @@ function createCountyVoters() {
     map.setLayoutProperty("county_voters_genders", "visibility", "none");
     map.setLayoutProperty("county_voters_parties", "visibility", "none");
     map.setLayoutProperty("county_voters_ages", "visibility", "none");
+    map.setLayoutProperty("county_labels", "visibility", "none");
 
     //------------------------------------------------
     function create_popup(e) {

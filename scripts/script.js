@@ -27,6 +27,13 @@ boundaryOption.addEventListener('change', function (e) {
     document.getElementById(prefix + "ages_legend").setAttribute("style", "display:;");
     document.getElementById(prefix + "map-title").setAttribute("style", "display:;");
     document.getElementById(prefix + "description").setAttribute("style", "display:;");
+
+    if(prefix=="county_voters_" || prefix=="county_officeholders_" || prefix=="DA_officeholders_"){
+        map.setLayoutProperty("county_labels", "visibility", "visible");
+    }else{
+        map.setLayoutProperty("county_labels", "visibility", "none");
+
+    }
     
     previous_bound = prefix;
 })
@@ -109,8 +116,9 @@ map.on("load", function () {
     createSchoolVoters()
     createSchoolOfficeholders();
     createCountyOfficeholders()
-    createCountyVoters()
     createDAOfficeholders()
+    createCountyVoters()
+    
    
 });
 
