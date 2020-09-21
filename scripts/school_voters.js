@@ -100,7 +100,7 @@ function createSchoolVoters() {
             .setHTML(
                 `<dl>
                        <h3>${e.features[0].properties.NAME}</h3>
-                       <p><dt>No. of voters</dt><dd>${e.features[0].properties.voter_count}</dd></p>
+                       <p><dt>No. of voters</dt><dd>${numberWithCommas(e.features[0].properties.voter_count)}</dd></p>
                       <dt>Average age</dt><dd>${parseFloat(e.features[0].properties.avg_age).toFixed(2)}</dd>
                       <p></p>
                       <dt>% of male voters</dt><dd>${e.features[0].properties.male_prcnt.toFixed(2)}</dd>

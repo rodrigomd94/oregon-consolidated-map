@@ -33,7 +33,7 @@ function createCountyVoters() {
                     [52, "#41b6c4"],
                     [54, "#1d91c0"],
                     [56, "#225ea8"],
-                    [58, "#0c2c84"],
+                    //[58, "#0c2c84"],
                 ]
             },
             "fill-opacity": 0.8,
@@ -50,12 +50,12 @@ function createCountyVoters() {
             "fill-color": {
                 property: "voter_count",
                 stops: [
-                    [1500, "#ffffd4"],
-                    [6000, "#fee391"],
-                    [20000, "#fec44f"],
-                    [80000, "#fe9929"],
-                    [300000, "#d95f0e"],
-                    [705000, "#993404"],
+                   // [1500, "#ffffd4"],
+                    [2000, "#fee391"],
+                    [6000, "#fec44f"],
+                    [20000, "#fe9929"],
+                    [80000, "#d95f0e"],
+                    [300000, "#993404"],
 
                 ]
             },
@@ -98,8 +98,10 @@ function createCountyVoters() {
             .setHTML(
                 `<dl>
                            <h3>${e.features[0].properties.NAME}</h3>
-                           <p><dt>No. of voters</dt><dd>${e.features[0].properties.voter_count}</dd></p>
-                          <dt>Average age</dt><dd>${parseFloat(e.features[0].properties.avg_age).toFixed(2)}</dd>
+                           <p><dt>No. of voters</dt><dd>${numberWithCommas(e.features[0].properties.voter_count)}</dd></p>
+                          <dt>Average age</dt><dd>${parseInt(e.features[0].properties.avg_age)}</dd>
+                          <p></p>
+                          <dt>District Attorney</dt><dd>${e.features[0].properties.attorney}</dd>
                           <p></p>
                           <dt>% of male voters</dt><dd>${e.features[0].properties.male_prcnt.toFixed(2)}</dd>
                           <dt>% of female voters</dt><dd>${e.features[0].properties.fem_prcnt.toFixed(2)}</dd>
@@ -144,8 +146,9 @@ function createCountyVoters() {
   ----------------------------------------------------------------COUNTY VOTERS LEGEND--------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------ 
 ---------------------------------voters legend ------------------*/
+
     var intervals_voters = ['<2000', '2,000 - 6,000', '6,000 - 20,000', '20,000 - 80,000', '80,000 - 300,000', '300,000+'];
-    var colors_voters = ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#d94801'];
+    var colors_voters = ['#ffffd4', '#fee391', '#fec44f', '#fe9929', '#d95f0e', '#993404'];
     for (i = 0; i < intervals_voters.length; i++) {
         var interval = intervals_voters[i];
         var color = colors_voters[i];
@@ -164,8 +167,9 @@ function createCountyVoters() {
     }
 
     /*---------------------------------ages legend ------------------*/
+
     var intervals_age = ['46-48', '48-50', '50-52', '52-54', '54-56', '56-58'];
-    var colors_age = ['#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#0c2c84'];
+    var colors_age = ['#ffffcc', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8'];
     for (i = 0; i < intervals_age.length; i++) {
         var interval = intervals_age[i];
         var color = colors_age[i];
@@ -276,4 +280,7 @@ function createCountyVoters() {
         item.appendChild(value);
         county_voters_nonaffiliated_legend.appendChild(item);
     }
+}
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
